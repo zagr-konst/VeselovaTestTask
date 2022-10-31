@@ -20,26 +20,37 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person create(Person person) {
-        return null;
+        if (person != null){
+            return personRepository.save(person);
+        }
+
+        throw new NullPointerException();
     }
 
     @Override
     public Person readById(long id) {
-        return null;
+        return personRepository.findById(id).orElseThrow(
+                ()->new NullPointerException()
+        );
     }
 
     @Override
     public Person update(Person person) {
-        return null;
+        if (person != null) {
+            readById(person.getId());
+            return personRepository.save(person);
+        }
+        throw new NullPointerException("User cannot be 'null'");
     }
 
     @Override
     public void delete(long id) {
-
+        Person person = readById(id);
+        personRepository.delete(person);
     }
 
     @Override
     public List<Person> getAll() {
-        return null;
+        return personRepository.findAll();
     }
 }
