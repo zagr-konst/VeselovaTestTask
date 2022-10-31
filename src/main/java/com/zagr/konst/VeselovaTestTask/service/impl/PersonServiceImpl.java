@@ -6,6 +6,7 @@ import com.zagr.konst.VeselovaTestTask.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Repository
@@ -30,7 +31,7 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public Person readById(long id) {
         return personRepository.findById(id).orElseThrow(
-                ()->new NullPointerException()
+                ()->new EntityNotFoundException("User with id " + id + " not found")
         );
     }
 

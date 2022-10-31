@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+!personData.db.trace.db
+
