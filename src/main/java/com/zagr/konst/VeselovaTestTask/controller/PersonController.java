@@ -25,11 +25,6 @@ public class PersonController {
     @GetMapping("/{id}")
     public PersonResponse getPerson(@PathVariable long id){
 
-/*        Person ps = new Person("Konstantin","Zagrevskiy",
-                LocalDate.of(2003, Month.SEPTEMBER,25));
-
-        personService.create(ps);*/
-
         Person person = personService.readById(id);
         log.info("got info about a person with id: "+id);
 
